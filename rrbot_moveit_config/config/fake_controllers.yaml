@@ -1,0 +1,8 @@
+controller_list:
+  - name: fake_rrbot_controller
+    joints:
+      - joint1
+      - joint2
+  - name: fake_tip_controller
+    joints:
+      []
