@@ -38,6 +38,8 @@
 
   <!-- Start the actual move_group node/action server -->
   <node name="move_group" launch-prefix="$(arg launch_prefix)" pkg="moveit_ros_move_group" type="move_group" respawn="false" output="screen" args="$(arg command_args)">
+    <!-- Remap joint_state topic that is produced by the gazebo-simulated rrbot -->
+    <remap from="/joint_states" to="/rrbot/joint_states" />
     <!-- Set the display variable, in case OpenGL code is used internally -->
     <env name="DISPLAY" value="$(optenv DISPLAY :0)" />
 
@@ -48,6 +50,7 @@
     <!-- MoveGroup capabilities to load -->
     <param name="capabilities" value="move_group/MoveGroupCartesianPathService
 				      move_group/MoveGroupExecuteService
+				      move_group/MoveGroupGetPlanningSceneService
 				      move_group/MoveGroupKinematicsService
 				      move_group/MoveGroupMoveAction
 				      move_group/MoveGroupPickPlaceAction
